@@ -13,32 +13,30 @@ public class main {
         boolean running = true;
         
         while (running) {
-            System.out.println(color.BLUE + "\nCRUD Application Menu:" + color.RESET);
-            System.out.println("[1] Create Person");
+            System.out.println(color.CYAN + "\nSTUDENTS INFORMATION" + color.RESET);
+            System.out.println(color.GREEN + "[1] Create Person");
             System.out.println("[2] Read All People");
             System.out.println("[3] Update Person");
             System.out.println("[4] Delete Person");
-            System.out.println("[5] Exit");
+            System.out.println("[5] Exit" + color.RESET);
             System.out.print("Select your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (choice) {
-                case 1:
+                case 1: 
                     crud.createPerson();
                     break;
-                case 2:
+                case 2: 
                     crud.readAllPeople();
                     break;
                 case 3:
-                    if (people.isEmpty()) {
+                    if (people.isEmpty()) 
                        ui.printRowEmpty();
-                    } else {
-                        crud.updatePerson();
-                    }
+                    else crud.updatePerson();
                     break;
                 case 4:
-                     crud.deletePerson();
+                    crud.deletePerson();
                     break;
                 case 5:
                     running = false;
