@@ -1,3 +1,4 @@
+
 package ProjectDev;
 
 import java.util.ArrayList;
@@ -13,16 +14,10 @@ public class main {
         boolean running = true;
         
         while (running) {
-            System.out.println(color.CYAN + "\nSTUDENTS INFORMATION" + color.RESET);
-            System.out.println(color.GREEN + "[1] Create Person");
-            System.out.println("[2] Read All People");
-            System.out.println("[3] Update Person");
-            System.out.println("[4] Delete Person");
-            System.out.println("[5] Exit" + color.RESET);
-            System.out.print("Select your choice: ");
-            int choice = scanner.nextInt();
+            menu.displayMenu();
+            int choice = menu.getMenuChoice(scanner); 
             scanner.nextLine();
-
+            
             switch (choice) {
                 case 1: 
                     crud.createPerson();
@@ -45,7 +40,7 @@ public class main {
                 default:
                     System.out.println("Invalid choice!");
             }
-         }
-       scanner.close();
+        }
+        scanner.close();
     }
 }
