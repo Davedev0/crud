@@ -10,7 +10,7 @@ public class menu {
         System.out.println("[4] Delete Person");
         System.out.println("[5] Exit" + color.RESET);
         System.out.print("Select your choice: ");
-    }
+     }
     
     public static int getMenuChoice(Scanner scanner) {
         return scanner.nextInt();

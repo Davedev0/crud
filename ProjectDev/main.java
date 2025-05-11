@@ -1,4 +1,3 @@
-
 package ProjectDev;
 
 import java.util.ArrayList;
@@ -26,9 +25,7 @@ public class main {
                     crud.readAllPeople();
                     break;
                 case 3:
-                    if (people.isEmpty()) 
-                       ui.printRowEmpty();
-                    else crud.updatePerson();
+                    crud.updatePerson();
                     break;
                 case 4:
                     crud.deletePerson();

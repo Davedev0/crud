@@ -51,7 +51,8 @@ public class crud {
         }
 
         if (personToUpdate == null) {
-            System.out.println("\nPerson with ID " + id + " not found.");
+            System.out.print("\nPerson with ID " + id + " not found.");
+            ui.printRowEmpty();
             return;
         }
 
