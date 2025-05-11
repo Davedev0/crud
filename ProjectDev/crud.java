@@ -92,8 +92,6 @@ public class crud {
 
         System.out.println("\nDeleting this person:");
         ui.printSinglePerson(personToDelete);
-        
         people.remove(personToDelete);
-        ui.printRowEmpty();
     }
 }
