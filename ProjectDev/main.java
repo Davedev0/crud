@@ -16,27 +16,7 @@ public class main {
             menu.displayMenu();
             int choice = menu.getMenuChoice(scanner); 
             scanner.nextLine();
-            
-            switch (choice) {
-                case 1: 
-                    crud.createPerson();
-                    break;
-                case 2: 
-                    crud.readAllPeople();
-                    break;
-                case 3:
-                    crud.updatePerson();
-                    break;
-                case 4:
-                    crud.deletePerson();
-                    break;
-                case 5:
-                    running = false;
-                    System.out.println("Exiting Program...");
-                    break;
-                default:
-                    System.out.println("Invalid choice!");
-            }
+            menuHandler.handleMenuChoice(choice);
         }
         scanner.close();
     }
