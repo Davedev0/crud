@@ -14,6 +14,7 @@ public class main {
             menu.displayMenu();
             int choice = menu.getMenuChoice(scanner); 
             scanner.nextLine();
+            if (choice == -1) continue;
             menuHandler.handleMenuChoice(choice);
          }
         scanner.close();
