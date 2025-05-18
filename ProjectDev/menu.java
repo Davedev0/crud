@@ -8,7 +8,7 @@ public class menu {
         
             System.out.println(color.CYAN + "\nSTUDENTS INFORMATION" + color.RESET);
             System.out.println(color.GREEN + "[1] Create Person");
-            System.out.println("[2] Read All People");
+            System.out.println("[2] Read All Person");
             System.out.println("[3] Update Person");
             System.out.println("[4] Delete Person");
             System.out.println("[5] Exit" + color.RESET);
