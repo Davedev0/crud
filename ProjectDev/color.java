@@ -1,6 +1,6 @@
 package ProjectDev;
 
-// color text of a program 
+// kulay ng text 
 public class color {
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
