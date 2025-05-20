@@ -62,7 +62,7 @@ public class crud {
             }
 
             if (personToUpdate == null) {
-                System.out.print("\nPerson with ID " + id + " not found.");
+                System.out.print(color.RED + "\nPerson with ID " + id + " not found." + color.RESET);
                 ui.printRowEmpty();
                 return;
             }
@@ -102,7 +102,7 @@ public class crud {
             }
 
             if (personToDelete == null) {
-                System.out.print("\nPerson with ID " + id + " not found.");
+                System.out.print(color.RED + "\nPerson with ID " + id + " not found." + color.RESET);
                 ui.printRowEmpty();
                 return;
             } 
