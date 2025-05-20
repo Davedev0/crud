@@ -11,10 +11,8 @@ public class studentSystem {
         try {
             while (inStudentSystem) {
                 menu.displayMenu();
-                int choice = menu.getMenuChoice(scanner); 
-                scanner.nextLine();
+                int choice = menu.getMenuChoice(scanner);
                 
-                if (choice == -1) continue;
                 if (choice == 5) {
                     inStudentSystem = false;
                 } else {

@@ -3,8 +3,8 @@ package ProjectDev;
 import java.util.Scanner;
 
 public class menu {
-    // Ipakita ang main menu
     public static void displayMenu() {
+        cls.clearScreen();
         System.out.println(color.CYAN + "\nSTUDENTS INFORMATION" + color.RESET);
         System.out.println(color.GREEN + "[1] Create Person");
         System.out.println("[2] Read All Person");
@@ -14,14 +14,21 @@ public class menu {
         System.out.print("Select your choice: ");
     }
     
-    // Kunin ang user input para sa menu choice
     public static int getMenuChoice(Scanner scanner) {
-        try {
-            return scanner.nextInt();
-        } catch (Exception e) {
-            scanner.nextLine(); // Linisin ang invalid input
-            System.out.println(color.RED + "Invalid Choice! Please enter a number (1-5)." + color.RESET);
-            return -1;
+        while (true) {
+            try {
+                int choice = scanner.nextInt();
+                
+                if (choice >= 1 && choice <= 5) {
+                    return choice;
+                } else {
+                    System.out.println(color.RED + "Invalid! Please select 1-5 only." + color.RESET);
+                    System.out.print("Select your choice: ");
+                }
+            } catch (Exception e) {
+                System.out.println(color.RED + "Invalid! Please enter a number." + color.RESET);
+                System.out.print("Select your choice: ");
+            }
         }
     }
 }

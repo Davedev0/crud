@@ -12,7 +12,9 @@ public class crud {
 
     // Gumawa ng bagong person
     public static void createPerson() {
+        cls.clearScreen();
         try {
+            System.out.println("CREATE STUDENT INFO");
             System.out.print("Enter name: ");
             String name = scanner.nextLine();
             
@@ -22,8 +24,27 @@ public class crud {
             
             Person person = new Person(nextId++, name, age);
             people.add(person);
+            
             System.out.println(color.YELLOW + "\nPerson created successfully!" + color.RESET);
             ui.printSinglePerson(person);
+            
+            while (true) {
+            System.out.print("\nCreate a new student (yes/no): ");
+            String createNewStudent = scanner.nextLine().toLowerCase();
+            
+            if (createNewStudent.equals("yes")) {
+                createPerson();
+                return;
+           } else if (createNewStudent.equals("no")) {
+                System.out.print("\nPress enter to return...");
+                scanner.nextLine();
+                cls.clearScreen();
+                return;
+           } else {
+                System.out.println(color.RED + "Invalid input! Please enter 'yes' or 'no' only!" + color.RESET);
+              }
+            }
+            
         } catch (InputMismatchException e) {
             System.out.println(color.RED + "Invalid input! Age must be a number." + color.RESET);
             scanner.nextLine();
@@ -32,8 +53,12 @@ public class crud {
 
     // Ipakita ang lahat ng mga persons
     public static void readAllPeople() {
+        cls.clearScreen();
         if (people.isEmpty()) {
             ui.printRowEmpty();
+            System.out.print("\nPress enter to return...");
+            scanner.nextLine();
+            cls.clearScreen();
             return;
         }
 
@@ -44,6 +69,10 @@ public class crud {
             System.out.println(person.toTableRow());
             ui.printRowSeparate();
         }
+        
+            System.out.print("\nPress enter to return...");
+            scanner.nextLine();
+            cls.clearScreen();
     }
 
     // I-update ang isang person
@@ -108,14 +137,14 @@ public class crud {
             } 
             
             System.out.print("Are you sure to delete (yes/no): ");
-            String toDelete = scanner.nextLine();
+            String toDelete = scanner.nextLine().toLowerCase();
             System.out.println();
             
             switch(toDelete) {
                 case "yes":
-            System.out.println(color.RED + "Person deleted successfully!" + color.RESET);
-            ui.printSinglePerson(personToDelete);
-            people.remove(personToDelete);
+                System.out.println(color.RED + "Person deleted successfully!" + color.RESET);
+                ui.printSinglePerson(personToDelete);
+                people.remove(personToDelete);
                 break;
                 
                 case "no":
