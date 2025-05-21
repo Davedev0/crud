@@ -39,8 +39,8 @@ public class mainMenu {
                                 running = false;
                                 break;
                             default:
-                                System.out.println(color.RED + "Invalid! Please select 1-3 only." + color.RESET);
-                                System.out.print("Select your choice: ");
+                                System.out.println(color.RED + "\nInvalid! Please select 1-3 only." + color.RESET);
+                                System.out.print("\nSelect your choice: ");
                                 continue; // show menu again
                         }
                         break; // exit the input loop if we got valid input
@@ -53,7 +53,7 @@ public class mainMenu {
             }
         } finally {
             scanner.close();
-            System.out.println(color.GREEN + "Program closed properly." + color.RESET);
+            System.out.println(color.GREEN + "Program closed properly..." + color.RESET);
         }
     }
     
@@ -62,7 +62,6 @@ public class mainMenu {
         System.out.println(color.YELLOW + "\nAbout Us:");
         System.out.println("This is a Student Information System");
         System.out.println("Created for educational purposes" + color.RESET);
-        System.out.print("\nPress enter to return to main menu...");
-        scanner.nextLine();
+        cls.pressEnterToDelete();
     }
 }

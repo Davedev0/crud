@@ -1,10 +1,7 @@
 package ProjectDev;
 
-import java.util.Scanner;
-
 public class menuHandler {
     public static void handleMenuChoice(int choice) {
-        Scanner scanner = new Scanner(System.in);
         try {
             switch (choice) {
                 case 1: 

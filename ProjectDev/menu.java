@@ -22,12 +22,12 @@ public class menu {
                 if (choice >= 1 && choice <= 5) {
                     return choice;
                 } else {
-                    System.out.println(color.RED + "Invalid! Please select 1-5 only." + color.RESET);
-                    System.out.print("Select your choice: ");
+                    System.out.println(color.RED + "\nInvalid! Please select 1-5 only." + color.RESET);
+                    System.out.print("\nSelect your choice: ");
                 }
             } catch (Exception e) {
-                System.out.println(color.RED + "Invalid! Please enter a number." + color.RESET);
-                System.out.print("Select your choice: ");
+                System.out.println(color.RED + "\nInvalid! Please enter a number." + color.RESET);
+                System.out.print("\nSelect your choice: ");
             }
         }
     }

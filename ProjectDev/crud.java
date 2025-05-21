@@ -36,12 +36,11 @@ public class crud {
                 createPerson();
                 return;
            } else if (createNewStudent.equals("no")) {
-                System.out.print("\nPress enter to return...");
-                scanner.nextLine();
+                cls.pressEnterToDelete();
                 cls.clearScreen();
                 return;
            } else {
-                System.out.println(color.RED + "Invalid input! Please enter 'yes' or 'no' only!" + color.RESET);
+                System.out.println(color.RED + "\nInvalid input! Please enter 'yes' or 'no' only!" + color.RESET);
               }
             }
             
@@ -56,13 +55,12 @@ public class crud {
         cls.clearScreen();
         if (people.isEmpty()) {
             ui.printRowEmpty();
-            System.out.print("\nPress enter to return...");
-            scanner.nextLine();
+            cls.pressEnterToDelete();
             cls.clearScreen();
             return;
         }
 
-        System.out.println(color.YELLOW + "\nList of People:" + color.RESET);
+        System.out.println(color.YELLOW + "\nList of students:" + color.RESET);
         ui.printTableHeader();
         //enhanced loop 
         for (Person person : people) {
@@ -70,13 +68,13 @@ public class crud {
             ui.printRowSeparate();
         }
         
-            System.out.print("\nPress enter to return...");
-            scanner.nextLine();
+            cls.pressEnterToDelete();
             cls.clearScreen();
     }
 
     // I-update ang isang person
     public static void updatePerson() {
+        cls.clearScreen();
         try {
             System.out.print("Enter ID of person to update: ");
             int id = scanner.nextInt();
@@ -93,6 +91,8 @@ public class crud {
             if (personToUpdate == null) {
                 System.out.print(color.RED + "\nPerson with ID " + id + " not found." + color.RESET);
                 ui.printRowEmpty();
+                cls.pressEnterToDelete();
+                cls.clearScreen();
                 return;
             }
 
@@ -109,6 +109,8 @@ public class crud {
             personToUpdate.setAge(newAge);
             System.out.println(color.YELLOW + "\nPerson updated successfully!" + color.RESET);
             ui.printSinglePerson(personToUpdate);
+            cls.pressEnterToDelete();
+            cls.clearScreen();
         } catch (InputMismatchException e) {
             System.out.println(color.RED + "Invalid input! Please enter a valid number for ID and age." + color.RESET);
             scanner.nextLine(); 
@@ -117,6 +119,7 @@ public class crud {
 
     // Tanggalin ang isang person
     public static void deletePerson() {
+        cls.clearScreen();
         try {
             System.out.print("Enter ID of person to delete: ");
             int id = scanner.nextInt();
@@ -133,23 +136,30 @@ public class crud {
             if (personToDelete == null) {
                 System.out.print(color.RED + "\nPerson with ID " + id + " not found." + color.RESET);
                 ui.printRowEmpty();
+                cls.pressEnterToDelete();
+                cls.clearScreen();
                 return;
             } 
             
-            System.out.print("Are you sure to delete (yes/no): ");
-            String toDelete = scanner.nextLine().toLowerCase();
-            System.out.println();
+            while (true) {
+            System.out.print("\nAre you sure to delete (yes/no): ");
+            String toDeletePerson = scanner.nextLine().toLowerCase();
             
-            switch(toDelete) {
-                case "yes":
-                System.out.println(color.RED + "Person deleted successfully!" + color.RESET);
+            if (toDeletePerson.equals("yes")) {
+                System.out.println(color.RED + "\nPerson deleted successfully!" + color.RESET);
                 ui.printSinglePerson(personToDelete);
                 people.remove(personToDelete);
-                break;
-                
-                case "no":
-                System.out.println("Cancel delete person!");
-                break;
+                cls.pressEnterToDelete();
+                cls.clearScreen();
+                return;
+           } else if (toDeletePerson.equals("no")) {
+                System.out.println(color.RED + "\nCancel delete student!" + color.RESET);
+                cls.pressEnterToDelete();
+                cls.clearScreen();
+                return;
+           } else {
+                System.out.println(color.RED + "\nInvalid input! Please enter 'yes' or 'no' only!" + color.RESET);
+              }
             }
         } catch (InputMismatchException e) {
             System.out.println(color.RED + "Invalid input! ID must be a number." + color.RESET);

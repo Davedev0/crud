@@ -1,9 +1,14 @@
 package ProjectDev;
 
+import java.util.Scanner;
+
 //this code is provided, do not touch!
 //https://stackoverflow.com/questions/2979383/how-to-clear-the-console-using-java
 public class cls {
+    static Scanner scanner = new Scanner(System.in);
+    
     public static void clearScreen() {
+        
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -13,5 +18,10 @@ public class cls {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    
+    public static void pressEnterToDelete() {
+            System.out.print("\nPress enter to return...");
+            scanner.nextLine();
     }
 }
