@@ -20,7 +20,7 @@ public class cls {
         }
     }
     
-    public static void pressEnterToDelete() {
+    public static void pressEnterToReturn() {
             System.out.print("\nPress enter to return...");
             scanner.nextLine();
     }

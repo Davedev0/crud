@@ -27,6 +27,7 @@ public class menu {
                 }
             } catch (Exception e) {
                 System.out.println(color.RED + "\nInvalid! Please enter a number." + color.RESET);
+                scanner.nextLine();
                 System.out.print("\nSelect your choice: ");
             }
         }

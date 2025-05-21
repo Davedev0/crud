@@ -46,8 +46,8 @@ public class mainMenu {
                         break; // exit the input loop if we got valid input
                     } catch (Exception e) {
                         scanner.nextLine(); // clear invalid input
-                        System.out.println(color.RED + "Invalid! Please enter a number." + color.RESET);
-                        System.out.print("Select your choice: ");
+                        System.out.println(color.RED + "\nInvalid! Please enter a number." + color.RESET);
+                        System.out.print("\nSelect your choice: ");
                     }
                 }
             }
@@ -62,6 +62,6 @@ public class mainMenu {
         System.out.println(color.YELLOW + "\nAbout Us:");
         System.out.println("This is a Student Information System");
         System.out.println("Created for educational purposes" + color.RESET);
-        cls.pressEnterToDelete();
+        cls.pressEnterToReturn();
     }
 }
