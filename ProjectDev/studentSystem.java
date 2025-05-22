@@ -20,7 +20,7 @@ public class studentSystem {
                 }
             }
         } catch (Exception e) {
-            System.out.println(color.RED + "An error occurred: " + e.getMessage() + color.RESET);
+            System.out.println(e);
         }
     }
 }

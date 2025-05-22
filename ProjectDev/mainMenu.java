@@ -35,25 +35,24 @@ public class mainMenu {
                                 displayAboutUs();
                                 break;
                             case 3:
-                                System.out.println(color.GREEN + "Exiting Program..." + color.RESET);
+                                System.out.print(color.GREEN + "\nExiting Program..." + color.RESET);
                                 running = false;
                                 break;
                             default:
-                                System.out.println(color.RED + "\nInvalid! Please select 1-3 only." + color.RESET);
+                                errorValidation.invalidChoice();
                                 System.out.print("\nSelect your choice: ");
                                 continue; // show menu again
                         }
                         break; // exit the input loop if we got valid input
                     } catch (Exception e) {
                         scanner.nextLine(); // clear invalid input
-                        System.out.println(color.RED + "\nInvalid! Please enter a number." + color.RESET);
+                        errorValidation.inputNumberOnly();
                         System.out.print("\nSelect your choice: ");
                     }
                 }
             }
         } finally {
             scanner.close();
-            System.out.println(color.GREEN + "Program closed properly..." + color.RESET);
         }
     }
     

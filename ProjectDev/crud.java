@@ -29,7 +29,7 @@ public class crud {
               ui.printSinglePerson(person);
                         
           } catch (Exception e) {
-            System.out.println(color.RED + "\nInvalid input! Age must be a number." + color.RESET);
+            errorValidation.invalidAge();
             scanner.nextLine();
          }
             
@@ -45,10 +45,10 @@ public class crud {
                 cls.clearScreen();
                 return;
            } else {
-                System.out.println(color.RED + "\nInvalid input! Please enter 'yes' or 'no' only!" + color.RESET);
-              }
+               errorValidation.inputYesOrNoOnly();
+               }
             }
-    }
+         }
 
     // Ipakita ang lahat ng mga persons
     public static void readAllPeople() {
@@ -114,7 +114,7 @@ public class crud {
                         scanner.nextLine();
                         validAge = true;
                     } catch (InputMismatchException e) {
-                        System.out.println(color.RED + "\nInvalid input! Age must be a number." + color.RESET);
+                        errorValidation.invalidAge();
                         scanner.nextLine();
                     }
                 }
@@ -128,7 +128,7 @@ public class crud {
                 return;
                 
             } catch (InputMismatchException e) {
-                System.out.println(color.RED + "\nInvalid input! ID must be a number." + color.RESET);
+                errorValidation.invalidId();
                 scanner.nextLine();
             }
         }
@@ -176,11 +176,11 @@ public class crud {
                         cls.clearScreen();
                         return;
                     } else {
-                        System.out.println(color.RED + "\nInvalid input! Please enter 'yes' or 'no' only!" + color.RESET);
+                        errorValidation.inputYesOrNoOnly();
                     }
                 }
             } catch (InputMismatchException e) {
-                System.out.println(color.RED + "\nInvalid input! ID must be a number." + color.RESET);
+                errorValidation.invalidId();
                 scanner.nextLine();
             }
         }

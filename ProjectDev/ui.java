@@ -1,5 +1,6 @@
 package ProjectDev;
 
+//Para makapag create ng table
 public class ui {
     public static void printTableHeader() {
         System.out.println("+------+----------------------+------+");

@@ -17,10 +17,10 @@ public class menuHandler {
                     crud.deletePerson();
                     break;
                 default:
-                    System.out.println(color.RED + "Invalid choice! Please select 1-5 only." + color.RESET);
+                    errorValidation.invalidChoice();
             }
         } catch (Exception e) {
-            System.out.println(color.RED + "An error occurred: " + e.getMessage() + color.RESET);
+            System.out.println(e);
         }
     }
 }
