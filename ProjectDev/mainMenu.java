@@ -5,9 +5,24 @@ import java.util.Scanner;
 public class mainMenu {
     private static Scanner scanner = new Scanner(System.in);
     
+    public static void displayWelcomeScreen() {
+        cls.clearScreen();
+        System.out.println(color.CYAN + "+====================================+");
+        System.out.println("|  WELCOME TO STUDENT MANAGEMENT     |");
+        System.out.println("+====================================+" + color.RESET);
+        System.out.print("\nPlease wait...");
+        
+        try {
+            // Wait for 3 seconds (3000 milliseconds)
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     public static void displayMainMenu() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "\nSTUDENT SYSTEM MANAGAMENT" + color.RESET);
+        System.out.println(color.CYAN + "\n=== STUDENT SYSTEM MANAGEMENT ===" + color.RESET);
         System.out.println(color.GREEN + "[1] Home");
         System.out.println("[2] About Us");
         System.out.println("[3] Exit" + color.RESET);
@@ -15,6 +30,9 @@ public class mainMenu {
     }
     
     public static void handleMainMenu() {
+        // Display welcome screen first
+        displayWelcomeScreen();
+        
         boolean running = true;
         
         try {
@@ -58,8 +76,8 @@ public class mainMenu {
     
     private static void displayAboutUs() {
         cls.clearScreen();
-        System.out.println(color.YELLOW + "\nAbout Us:");
-        System.out.println("This is a Student Information System");
+        System.out.println(color.CYAN + "=== ABOUT US ===" + color.RESET);
+        System.out.println(color.YELLOW + "This is a Student Information System");
         System.out.println("Created for educational purposes" + color.RESET);
         cls.pressEnterToReturn();
     }

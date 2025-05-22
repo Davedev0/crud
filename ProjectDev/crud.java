@@ -13,46 +13,64 @@ public class crud {
     // Gumawa ng bagong person
     public static void createPerson() {
         cls.clearScreen();
+        System.out.println(color.CYAN + "=== CREATE STUDENT INFO ===" + color.RESET);
         try {
-            System.out.println("CREATE STUDENT INFO");
-            System.out.print("Enter name: ");
+            System.out.print("Enter full name: ");
             String name = scanner.nextLine();
             
-            System.out.print("Enter age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine(); // Linisin ang buffer
+            System.out.print("Enter course: ");
+            String course = scanner.nextLine();
+            
+            System.out.print("Enter section: ");
+            String section = scanner.nextLine();
+            
+            // Age input with validation
+            int age = 0;
+            boolean validAge = false;
+            while (!validAge) {
+                try {
+                    System.out.print("Enter age: ");
+                    age = scanner.nextInt();
+                    scanner.nextLine(); // Linisin ang buffer
+                    validAge = true;
+                } catch (InputMismatchException e) {
+                    errorValidation.invalidAge();
+                    scanner.nextLine(); // Clear invalid input
+                }
+            }
           
-              Person person = new Person(nextId++, name, age);
-              people.add(person);
+            Person person = new Person(nextId++, name, course, section, age);
+            people.add(person);
           
-              System.out.println(color.YELLOW + "\nStudent created successfully!" + color.RESET);
-              ui.printSinglePerson(person);
+            System.out.println(color.YELLOW + "\nStudent created successfully!" + color.RESET);
+            ui.printSinglePerson(person);
                         
-          } catch (Exception e) {
+        } catch (Exception e) {
             errorValidation.invalidAge();
             scanner.nextLine();
-         }
+        }
             
-            while (true) {
+        while (true) {
             System.out.print("\nCreate a new student (yes/no): ");
             String createNewStudent = scanner.nextLine().toLowerCase();
             
             if (createNewStudent.equals("yes")) {
                 createPerson();
                 return;
-           } else if (createNewStudent.equals("no")) {
+            } else if (createNewStudent.equals("no")) {
                 cls.pressEnterToReturn();
                 cls.clearScreen();
                 return;
-           } else {
-               errorValidation.inputYesOrNoOnly();
-               }
+            } else {
+                errorValidation.inputYesOrNoOnly();
             }
-         }
-
+        }
+    }
+    
     // Ipakita ang lahat ng mga persons
     public static void readAllPeople() {
         cls.clearScreen();
+        System.out.println(color.CYAN + "=== LIST OF STUDENTS ===" + color.RESET);
         if (people.isEmpty()) {
             ui.printRowEmpty();
             cls.pressEnterToReturn();
@@ -60,7 +78,6 @@ public class crud {
             return;
         }
         
-        System.out.println(color.YELLOW + "\nList of students:" + color.RESET);
         ui.printTableHeader();
         //enhanced loop 
         for (Person person : people) {
@@ -68,13 +85,14 @@ public class crud {
             ui.printRowSeparate();
         }
         
-            cls.pressEnterToReturn();
-            cls.clearScreen();
+        cls.pressEnterToReturn();
+        cls.clearScreen();
     }
 
     // I-update ang isang person
     public static void updatePerson() {
         cls.clearScreen();
+        System.out.println(color.CYAN + "=== UPDATE STUDENT INFO ===" + color.RESET);
         while (true) {
             try {
                 System.out.print("Enter ID of student to update: ");
@@ -92,9 +110,20 @@ public class crud {
                 if (personToUpdate == null) {
                     System.out.print(color.RED + "\nStudent with ID " + id + " not found." + color.RESET);
                     ui.printRowEmpty();
-                    cls.pressEnterToReturn();
-                    cls.clearScreen();
-                    return;
+                    System.out.print("\nTry again to update (yes/no): ");
+                    String tryAgainToUpdate = scanner.nextLine().toLowerCase();
+                
+                    if (tryAgainToUpdate.equals("yes")) {
+                        updatePerson();
+                        return;
+                    } else if (tryAgainToUpdate.equals("no")) {
+                        cls.pressEnterToReturn();
+                        cls.clearScreen();
+                        return;
+                    } else {
+                        errorValidation.inputYesOrNoOnly();
+                    }
+                    continue;
                 }
 
                 System.out.println(color.YELLOW + "\nCurrent details:" + color.RESET);
@@ -104,12 +133,20 @@ public class crud {
                 System.out.print("\nEnter new name (current: " + personToUpdate.getName() + "): ");
                 String newName = scanner.nextLine();
                 
+                // Get new course
+                System.out.print("Enter new course (current: " + personToUpdate.getCourse() + "): ");
+                String newCourse = scanner.nextLine();
+                
+                // Get new section
+                System.out.print("Enter new section (current: " + personToUpdate.getSection() + "): ");
+                String newSection = scanner.nextLine();
+                
                 // Get new age with validation
                 int newAge = 0;
                 boolean validAge = false;
                 while (!validAge) {
                     try {
-                        System.out.print("\nEnter new age (current: " + personToUpdate.getAge() + "): ");
+                        System.out.print("Enter new age (current: " + personToUpdate.getAge() + "): ");
                         newAge = scanner.nextInt();
                         scanner.nextLine();
                         validAge = true;
@@ -120,6 +157,8 @@ public class crud {
                 }
 
                 personToUpdate.setName(newName);
+                personToUpdate.setCourse(newCourse);
+                personToUpdate.setSection(newSection);
                 personToUpdate.setAge(newAge);
                 System.out.println(color.YELLOW + "\nPerson updated successfully!" + color.RESET);
                 ui.printSinglePerson(personToUpdate);
@@ -137,6 +176,7 @@ public class crud {
     // Tanggalin ang isang person
     public static void deletePerson() {
         cls.clearScreen();
+        System.out.println(color.CYAN + "=== DELETE STUDENT INFO ===" + color.RESET);
         while (true) {
             try {
                 System.out.print("Enter ID of student to delete: ");
@@ -154,12 +194,25 @@ public class crud {
                 if (personToDelete == null) {
                     System.out.print(color.RED + "\nStudent with ID " + id + " not found." + color.RESET);
                     ui.printRowEmpty();
-                    cls.pressEnterToReturn();
-                    cls.clearScreen();
-                    return;
-                } 
+                    System.out.print("\nTry again to delete (yes/no): ");
+                    String tryAgainToDelete = scanner.nextLine().toLowerCase();
+                
+                    if (tryAgainToDelete.equals("yes")) {
+                        deletePerson();
+                        return;
+                    } else if (tryAgainToDelete.equals("no")) {
+                        cls.pressEnterToReturn();
+                        cls.clearScreen();
+                        return;
+                    } else {
+                        errorValidation.inputYesOrNoOnly();
+                    }
+                    continue;
+                }
                 
                 while (true) {
+                    System.out.println(color.YELLOW + "\nCurrent details:" + color.RESET);
+                    ui.printSinglePerson(personToDelete);
                     System.out.print("\nAre you sure to delete (yes/no): ");
                     String toDeletePerson = scanner.nextLine().toLowerCase();
                     

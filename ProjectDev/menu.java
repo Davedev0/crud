@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class menu {
     public static void displayMenu() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "\nSTUDENTS INFORMATION" + color.RESET);
-        System.out.println(color.GREEN + "[1] Create Person");
-        System.out.println("[2] Read All Person");
-        System.out.println("[3] Update Person");
-        System.out.println("[4] Delete Person");
-        System.out.println("[5] Back" + color.RESET);
+        System.out.println(color.CYAN + "\n=== STUDENTS INFORMATION ===" + color.RESET);
+        System.out.println(color.GREEN + "[1] Create Student");
+        System.out.println("[2] View All Students");
+        System.out.println("[3] Update Student");
+        System.out.println("[4] Delete Student");
+        System.out.println("[5] Back to Main Menu" + color.RESET);
         System.out.print("Select your choice: ");
     }
     
