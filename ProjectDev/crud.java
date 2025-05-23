@@ -3,7 +3,6 @@ package ProjectDev;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class crud {
     private static List<Person> people = new ArrayList<>();
@@ -13,7 +12,7 @@ public class crud {
     // Gumawa ng bagong person
     public static void createPerson() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "=== CREATE STUDENT INFO ===" + color.RESET);
+        System.out.println(color.CYAN + "\n=== CREATE STUDENT INFO ===" + color.RESET);
         try {
             System.out.print("Enter full name: ");
             String name = scanner.nextLine();
@@ -31,14 +30,31 @@ public class crud {
                 try {
                     System.out.print("Enter age: ");
                     age = scanner.nextInt();
-                    scanner.nextLine(); // Linisin ang buffer
+                    scanner.nextLine(); 
                     validAge = true;
-                } catch (InputMismatchException e) {
+                } catch (Exception e) {
                     errorValidation.invalidAge();
                     scanner.nextLine(); // Clear invalid input
-                }
+                } 
             }
-          
+                
+            if (age <= 3 || age >= 80) {
+                System.out.println(color.RED + "\nInvalid age! Age must be between 4 and 79." + color.RESET);
+                System.out.print("\nTry again to create (yes/no): ");
+                String ageValidation = scanner.nextLine().toLowerCase();
+            
+                if (ageValidation.equals("yes")) {
+                    createPerson();
+                    return;
+                } else if (ageValidation.equals("no")) {
+                    cls.pressEnterToReturn();
+                    cls.clearScreen();
+                    return;
+                } else {
+                    errorValidation.inputYesOrNoOnly();
+                }
+            } 
+            
             Person person = new Person(nextId++, name, course, section, age);
             people.add(person);
           
@@ -70,7 +86,7 @@ public class crud {
     // Ipakita ang lahat ng mga persons
     public static void readAllPeople() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "=== LIST OF STUDENTS ===" + color.RESET);
+        System.out.println(color.CYAN + "\n=== LIST OF STUDENTS ===" + color.RESET);
         if (people.isEmpty()) {
             ui.printRowEmpty();
             cls.pressEnterToReturn();
@@ -79,7 +95,6 @@ public class crud {
         }
         
         ui.printTableHeader();
-        //enhanced loop 
         for (Person person : people) {
             System.out.println(person.toTableRow());
             ui.printRowSeparate();
@@ -92,7 +107,7 @@ public class crud {
     // I-update ang isang person
     public static void updatePerson() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "=== UPDATE STUDENT INFO ===" + color.RESET);
+        System.out.println(color.CYAN + "\n=== UPDATE STUDENT INFO ===" + color.RESET);
         while (true) {
             try {
                 System.out.print("Enter ID of student to update: ");
@@ -114,8 +129,7 @@ public class crud {
                     String tryAgainToUpdate = scanner.nextLine().toLowerCase();
                 
                     if (tryAgainToUpdate.equals("yes")) {
-                        updatePerson();
-                        return;
+                        continue;
                     } else if (tryAgainToUpdate.equals("no")) {
                         cls.pressEnterToReturn();
                         cls.clearScreen();
@@ -150,23 +164,54 @@ public class crud {
                         newAge = scanner.nextInt();
                         scanner.nextLine();
                         validAge = true;
-                    } catch (InputMismatchException e) {
+                    } catch (Exception e) {
                         errorValidation.invalidAge();
                         scanner.nextLine();
                     }
                 }
-
-                personToUpdate.setName(newName);
-                personToUpdate.setCourse(newCourse);
-                personToUpdate.setSection(newSection);
-                personToUpdate.setAge(newAge);
-                System.out.println(color.YELLOW + "\nPerson updated successfully!" + color.RESET);
-                ui.printSinglePerson(personToUpdate);
-                cls.pressEnterToReturn();
-                cls.clearScreen();
-                return;
                 
-            } catch (InputMismatchException e) {
+                if (newAge <= 3 || newAge >= 80) {
+                    System.out.println(color.RED + "\nInvalid age! Age must be between 4 and 79." + color.RESET);
+                    System.out.print("\nTry again to update (yes/no): ");
+                    String ageValidation = scanner.nextLine().toLowerCase();
+                
+                    if (ageValidation.equals("yes")) {
+                        continue;
+                    } else if (ageValidation.equals("no")) {
+                        cls.pressEnterToReturn();
+                        cls.clearScreen();
+                        return;
+                    } else {
+                        errorValidation.inputYesOrNoOnly();
+                    }
+                }
+
+                // Add confirmation before mag update
+                while (true) {
+                    System.out.print("\nAre you sure you want to update this student? (yes/no): ");
+                    String confirmUpdate = scanner.nextLine().toLowerCase();
+                    
+                    if (confirmUpdate.equals("yes")) {
+                        personToUpdate.setName(newName);
+                        personToUpdate.setCourse(newCourse);
+                        personToUpdate.setSection(newSection);
+                        personToUpdate.setAge(newAge);
+                        System.out.println(color.YELLOW + "\nStudent updated successfully!" + color.RESET);
+                        ui.printSinglePerson(personToUpdate);
+                        cls.pressEnterToReturn();
+                        cls.clearScreen();
+                        return;
+                    } else if (confirmUpdate.equals("no")) {
+                        System.out.println(color.RED + "\nUpdate cancelled!" + color.RESET);
+                        cls.pressEnterToReturn();
+                        cls.clearScreen();
+                        return;
+                    } else {
+                        errorValidation.inputYesOrNoOnly();
+                    } 
+                }
+                
+            } catch (Exception e) {
                 errorValidation.invalidId();
                 scanner.nextLine();
             }
@@ -176,7 +221,7 @@ public class crud {
     // Tanggalin ang isang person
     public static void deletePerson() {
         cls.clearScreen();
-        System.out.println(color.CYAN + "=== DELETE STUDENT INFO ===" + color.RESET);
+        System.out.println(color.CYAN + "\n=== DELETE STUDENT INFO ===" + color.RESET);
         while (true) {
             try {
                 System.out.print("Enter ID of student to delete: ");
@@ -198,8 +243,7 @@ public class crud {
                     String tryAgainToDelete = scanner.nextLine().toLowerCase();
                 
                     if (tryAgainToDelete.equals("yes")) {
-                        deletePerson();
-                        return;
+                        continue;
                     } else if (tryAgainToDelete.equals("no")) {
                         cls.pressEnterToReturn();
                         cls.clearScreen();
@@ -224,7 +268,7 @@ public class crud {
                         cls.clearScreen();
                         return;
                     } else if (toDeletePerson.equals("no")) {
-                        System.out.println(color.RED + "\nCancel delete student!" + color.RESET);
+                        System.out.println(color.RED + "\nCancelled delete student!" + color.RESET);
                         cls.pressEnterToReturn();
                         cls.clearScreen();
                         return;
@@ -232,7 +276,7 @@ public class crud {
                         errorValidation.inputYesOrNoOnly();
                     }
                 }
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 errorValidation.invalidId();
                 scanner.nextLine();
             }

@@ -1,4 +1,3 @@
-// Person.java
 package ProjectDev;
 
 //Encapsulation 
@@ -12,9 +11,9 @@ public class Person {
     // Constructor para sa Person
     public Person(int id, String name, String course, String section, int age) {
         this.id = id;
-        this.name = name;
-        this.course = course;
-        this.section = section;
+        this.name = name.toUpperCase(); 
+        this.course = course.toUpperCase(); 
+        this.section = section.toUpperCase(); 
         this.age = age;
     }
 
@@ -28,7 +27,7 @@ public class Person {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase(); 
     }
 
     public String getCourse() {
@@ -36,7 +35,7 @@ public class Person {
     }
 
     public void setCourse(String course) {
-        this.course = course;
+        this.course = course.toUpperCase();
     }
 
     public String getSection() {
@@ -44,7 +43,7 @@ public class Person {
     }
 
     public void setSection(String section) {
-        this.section = section;
+        this.section = section.toUpperCase();
     }
 
     public int getAge() {
